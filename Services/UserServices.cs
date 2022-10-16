@@ -15,7 +15,7 @@ public class UserService
 
         MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
         IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
-        _usercollection = database.GetCollection<Users>("Users_teting");
+        _usercollection = database.GetCollection<Users>("Users_teting11");
 
     }
 
