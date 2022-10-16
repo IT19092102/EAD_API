@@ -13,6 +13,7 @@ builder.Services.Configure<FuelAPISettings>(builder.Configuration.GetSection("Mo
 builder.Services.AddSingleton<MongoDBService>();
 
 
+
 // Add services to the container.
 
 builder.Services.AddControllers();

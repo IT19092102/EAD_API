@@ -1,20 +1,20 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System.Text.Json.Serialization;
+
 
 
 namespace fuel_API.Models;
 
-public class Users
+public class StationModel
 {
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
  
-    public string email { get; set; } = null!;
-    public string password { get; set; } = null!;
-    public long phoneNumber { get; set; } = 0!;
+    public string emasssail { get; set; } = null!;
+    public string sasa { get; set; } = null!;
+    public long phonsaseNumber { get; set; } = 0!;
     
 
  

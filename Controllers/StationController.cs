@@ -7,25 +7,27 @@ namespace fuel_API.Controllers;
 
 [Controller]
 [Route("api/[controller]")]
-public class PlaylistController: Controller{
+public class StationController: Controller{
   
     private readonly MongoDBService _mongoDBService;
 
-    public PlaylistController(MongoDBService mongoDBService){
+    public StationController(MongoDBService mongoDBService){
         _mongoDBService = mongoDBService;
     }
+    
 
 
 
     [HttpGet]
-    public async Task<List<Playlist>> Get(){
-    return await _mongoDBService.GetAllPlayList();
+    public async Task<List<Users>> Get(){
+          Console.WriteLine("inside gettttttttttttttt ------------");
+    return await _mongoDBService.GetAllUsers();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post ([FromBody] Playlist playlist){
+    public async Task<IActionResult> Post ([FromBody] Users playlist){
   
-    await _mongoDBService.CreatePlayList(playlist);
+    await _mongoDBService.CreateUser(playlist);
     return CreatedAtAction(nameof(Get), new{id = playlist.Id}, playlist);
     }
 
@@ -56,8 +58,9 @@ public class PlaylistController: Controller{
     }
 
      [HttpDelete("{id}")]
-    public async Task<IActionResult> DeletePlaylist (string id){
-      await _mongoDBService.DeletePlaylist(id);
+    public async Task<IActionResult> DeleteUser (string id){
+     Console.WriteLine("inside delllllllllll ------------ :"+id);
+      await _mongoDBService.DeleteUser(id);
      return NoContent();
     }
 

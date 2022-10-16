@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\Desktop\\EAD ASSSIGNMENT\\fuel_API\\fuel_API.csproj": {}
+    "D:\\EAD ASSIGNMENT\\fuel_API\\fuel_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\Desktop\\EAD ASSSIGNMENT\\fuel_API\\fuel_API.csproj": {
+    "D:\\EAD ASSIGNMENT\\fuel_API\\fuel_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\EAD ASSSIGNMENT\\fuel_API\\fuel_API.csproj",
+        "projectUniqueName": "D:\\EAD ASSIGNMENT\\fuel_API\\fuel_API.csproj",
         "projectName": "fuel_API",
-        "projectPath": "C:\\Users\\ASUS\\Desktop\\EAD ASSSIGNMENT\\fuel_API\\fuel_API.csproj",
+        "projectPath": "D:\\EAD ASSIGNMENT\\fuel_API\\fuel_API.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\Desktop\\EAD ASSSIGNMENT\\fuel_API\\obj\\",
+        "outputPath": "D:\\EAD ASSIGNMENT\\fuel_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
