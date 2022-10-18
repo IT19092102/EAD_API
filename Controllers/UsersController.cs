@@ -32,30 +32,22 @@ public class UserController: Controller{
     }
 
 
-// //users........ start
 
+   [HttpPost("{email,password}")]
+    public async Task<String> Post (string email, string password){
+  
+   return await _mongoDBService.FindUser(email,password);
 
-
-//     [HttpGet]
-//     // public async Task<List<Users>> Get1(){
-//     // return await _mongoDBService.GetAllUsers();
-//     // }
-
-//         [HttpPost]
-//     public async Task<IActionResult> Post ([FromBody] Users users){
-//     Console.WriteLine("This is C#...........inside controller.........");
-//     await _mongoDBService.CreateUser(users);
-//     return CreatedAtAction(nameof(Get), new{id = users.Id}, users);
-//     }
-
-// //users........ end
-
-
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Playlist (string id, [FromBody] string movieId){
-     await _mongoDBService.AddToPlaylistAsync(id,movieId);
-     return NoContent();
+   
+    // return CreatedAtAction(nameof(Get), new{id = playlist.Id}, playlist);
     }
+
+
+
+
+
+
+
 
      [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser (string id){
