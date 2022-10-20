@@ -32,8 +32,18 @@ public class UserController: Controller{
     }
 
 
+//     [HttpPost]
+//     public async Task<IActionResult> Login ([FromBody] string email){
+  
+//    await _mongoDBService.DeleteUser(email);
+//     return NoContent();
+//     }
 
-   [HttpPost("{email,password}")]
+
+
+
+
+   [HttpPost("{email}")]
     public async Task<String> Post (string email, string password){
   
    return await _mongoDBService.FindUser(email,password);
@@ -43,6 +53,13 @@ public class UserController: Controller{
     }
 
 
+
+ [HttpPut("{id}")]
+    public async Task<IActionResult> updateQueue(string id, [FromBody] Users playlistr)
+    {
+        await _mongoDBService.UpdateUser(id, playlistr.email, playlistr.phoneNumber);
+        return NoContent();
+    }
 
 
 

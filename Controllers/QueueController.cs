@@ -11,7 +11,6 @@ public class QueueController : Controller
 {
 
     private readonly MongoDBService _mongoDBService;
-
     public QueueController(MongoDBService mongoDBService)
     {
         _mongoDBService = mongoDBService;
@@ -21,7 +20,6 @@ public class QueueController : Controller
     [HttpGet]
     public async Task<List<QueueModel>> Get()
     {
-
         return await _mongoDBService.getQueue();
     }
 
@@ -42,7 +40,7 @@ public class QueueController : Controller
     [HttpDelete("{id}")]
     public async Task<IActionResult> deleteQueue(string id)
     {
-        
+
         await _mongoDBService.deleteQueue(id);
         return NoContent();
     }

@@ -58,11 +58,27 @@ public class MongoDBService
         return;
     }
 
-    public async Task UpdateUser(string id, string email)
+    public async Task UpdateUser(string id, string email,long phoneNumber)
     {
+
+        Console.WriteLine("UpdateUser services  id............... :"+id);
+        
+        Console.WriteLine("UpdateUser services  email............... :"+email);
+
+         Console.WriteLine("UpdateUser services  number............... :"+phoneNumber);
         FilterDefinition<Users> filter = Builders<Users>.Filter.Eq("Id", id);
-        UpdateDefinition<Users> update = Builders<Users>.Update.AddToSet<string>("email", email);
-        await _usercollection.UpdateOneAsync(filter, update);
+        UpdateDefinition<Users> update = Builders<Users>.Update.Set("email",email);
+         UpdateDefinition<Users> update1 = Builders<Users>.Update.Set("phoneNumber",phoneNumber);
+          
+
+
+
+        await _usercollection.UpdateOneAsync(filter, update) ;_usercollection.UpdateOneAsync(filter, update1);
+ 
+    //             await _usercollection.UpdateManyAsync(filter, update,update1);
+
+    //  await _usercollection. (filter, update,update1);
+
         return;
     }
 
@@ -133,10 +149,10 @@ public class MongoDBService
         return;
     }
 
-    public async Task updateStation(string id, string email)
-    {
+    public async Task updateStation(string id, string location)
+    {Console.WriteLine("inside  services location ------------ :" + location);
         FilterDefinition<StationModel> filter = Builders<StationModel>.Filter.Eq("Id", id);
-        UpdateDefinition<StationModel> update = Builders<StationModel>.Update.AddToSet<string>("email", email);
+        UpdateDefinition<StationModel> update = Builders<StationModel>.Update.SetOnInsert<string>("email", location);
         await _stationcollection.UpdateOneAsync(filter, update);
         return;
     }
