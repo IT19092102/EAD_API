@@ -10,7 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.Configure<FuelAPISettings>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<MongoDBService>();
+builder.Services.AddSingleton<QueueService>();
+builder.Services.AddSingleton<UserServices>();
+builder.Services.AddSingleton<StationServices>();
+// builder.Services.AddSingleton<QueueServices>();
+
 
 
 

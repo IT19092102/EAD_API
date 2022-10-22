@@ -10,11 +10,11 @@ namespace fuel_API.Controllers;
 public class StationController : Controller
 {
 
-    private readonly MongoDBService _mongoDBService;
+    private readonly StationServices _stationService;
 
-    public StationController(MongoDBService mongoDBService)
+    public StationController(StationServices mongoDBService)
     {
-        _mongoDBService = mongoDBService;
+        _stationService = mongoDBService;
     }
 
 
@@ -22,20 +22,33 @@ public class StationController : Controller
     public async Task<List<StationModel>> Get()
     {
 
-        return await _mongoDBService.getStation();
+        return await _stationService.getStation();
     }
+
+
+
+//   [HttpGet("{stationName}")]
+//     public async Task<List<QueueModel>> GetQueue(string stationName)
+//     {
+
+//         return await _stationService.getQueueByStationName(stationName);
+//     }
+
+
+
+
 
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] StationModel playlist)
     {
-        await _mongoDBService.createStation(playlist);
+        await _stationService.createStation(playlist);
         return CreatedAtAction(nameof(Get), new { id = playlist.Id }, playlist);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> updateStation(string id, [FromBody] string movieId)
     {
-        await _mongoDBService.updateStation(id, movieId);
+        await _stationService.updateStation(id, movieId);
         return NoContent();
     }
 
@@ -43,7 +56,7 @@ public class StationController : Controller
     public async Task<IActionResult> deleteStation(string id)
     {
         Console.WriteLine("inside delllllllllll ------------ :" + id);
-        await _mongoDBService.deleteStation(id);
+        await _stationService.deleteStation(id);
         return NoContent();
     }
 

@@ -10,8 +10,8 @@ namespace fuel_API.Controllers;
 public class QueueController : Controller
 {
 
-    private readonly MongoDBService _mongoDBService;
-    public QueueController(MongoDBService mongoDBService)
+    private readonly QueueService _mongoDBService;
+    public QueueController(QueueService mongoDBService)
     {
         _mongoDBService = mongoDBService;
     }

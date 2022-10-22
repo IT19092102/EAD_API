@@ -9,10 +9,10 @@ namespace fuel_API.Controllers;
 [Route("api/[controller]")]
 public class UserController: Controller{
   
-    private readonly MongoDBService _mongoDBService;
+    private readonly UserServices _userService;
 
-    public UserController(MongoDBService mongoDBService){
-        _mongoDBService = mongoDBService;
+    public UserController(UserServices mongoDBService){
+        _userService = mongoDBService;
     }
     
 
@@ -21,13 +21,13 @@ public class UserController: Controller{
     [HttpGet]
     public async Task<List<Users>> Get(){
           Console.WriteLine("inside gettttttttttttttt ------------");
-    return await _mongoDBService.GetAllUsers();
+    return await _userService.GetAllUsers();
     }
 
     [HttpPost]
     public async Task<IActionResult> Post ([FromBody] Users playlist){
   
-    await _mongoDBService.CreateUser(playlist);
+    await _userService.CreateUser(playlist);
     return CreatedAtAction(nameof(Get), new{id = playlist.Id}, playlist);
     }
 
@@ -35,7 +35,7 @@ public class UserController: Controller{
 //     [HttpPost]
 //     public async Task<IActionResult> Login ([FromBody] string email){
   
-//    await _mongoDBService.DeleteUser(email);
+//    await _userService.DeleteUser(email);
 //     return NoContent();
 //     }
 
@@ -46,7 +46,7 @@ public class UserController: Controller{
    [HttpPost("{email}")]
     public async Task<String> Post (string email, string password){
   
-   return await _mongoDBService.FindUser(email,password);
+   return await _userService.FindUser(email,password);
 
    
     // return CreatedAtAction(nameof(Get), new{id = playlist.Id}, playlist);
@@ -57,7 +57,7 @@ public class UserController: Controller{
  [HttpPut("{id}")]
     public async Task<IActionResult> updateQueue(string id, [FromBody] Users playlistr)
     {
-        await _mongoDBService.UpdateUser(id, playlistr.email, playlistr.phoneNumber);
+        await _userService.UpdateUser(id, playlistr.email, playlistr.phoneNumber);
         return NoContent();
     }
 
@@ -69,7 +69,7 @@ public class UserController: Controller{
      [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser (string id){
      Console.WriteLine("inside delllllllllll ------------ :"+id);
-      await _mongoDBService.DeleteUser(id);
+      await _userService.DeleteUser(id);
      return NoContent();
     }
 
