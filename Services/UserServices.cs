@@ -40,7 +40,7 @@ public class UserServices
     }
 
     //Updating  users to the Database
-    public async Task UpdateUser(string id, string email, long phoneNumber)
+    public async Task UpdateUser(string id, string email, string phoneNumber)
     {
         FilterDefinition<Users> filter = Builders<Users>.Filter.Eq("Id", id);
         UpdateDefinition<Users> update = Builders<Users>.Update.Set("email", email);

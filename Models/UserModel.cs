@@ -11,7 +11,11 @@ public class Users
  
     public string email { get; set; } = null!;
     public string password { get; set; } = null!;
-    public long phoneNumber { get; set; } = 0!;
+    public string phoneNumber { get; set; }  = null!;
+
+    public string userRole { get; set; }  = null!;
+
+    public string drivingLicenceNo { get; set; }  = null!;
    
 
 }
