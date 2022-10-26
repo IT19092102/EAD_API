@@ -17,7 +17,7 @@ public class FuelController : Controller
         _fuelService = mongoDBService;
     }
 
-
+    //Retreiving all  fuel data from  the Database
     [HttpGet]
     public async Task<List<FuelModel>> Get()
     {
@@ -26,11 +26,7 @@ public class FuelController : Controller
     }
 
 
-
-
-
-
-
+    //Inserting  fuel to the Database
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] FuelModel playlist)
     {
@@ -38,6 +34,7 @@ public class FuelController : Controller
         return CreatedAtAction(nameof(Get), new { id = playlist.Id }, playlist);
     }
 
+    //Updating  fuel to the Database
     [HttpPut("{stationName}")]
     public async Task<IActionResult> updatefuel(string stationName, [FromBody] FuelModel fuel)
     {
@@ -45,10 +42,10 @@ public class FuelController : Controller
         return NoContent();
     }
 
+    //Deleteing  fuel from  the Database
     [HttpDelete("{id}")]
     public async Task<IActionResult> deletefuel(string id)
     {
-        Console.WriteLine("inside delllllllllll ------------ :" + id);
         await _fuelService.DeleteFuel(id);
         return NoContent();
     }

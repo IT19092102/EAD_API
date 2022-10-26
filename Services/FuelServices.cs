@@ -9,7 +9,7 @@ public class FuelServices
 {
     private readonly IMongoCollection<FuelModel> _Fuelcollection;
 
-    //mogo
+    
     public FuelServices(IOptions<FuelAPISettings> FuelAPISettings)
     {
 
@@ -19,19 +19,20 @@ public class FuelServices
 
     }
 
-
-
+    //Inserting  fuel to the Database
     public async Task CreateFuel(FuelModel fuelModel)
     {
-
         await _Fuelcollection.InsertOneAsync(fuelModel);
         return;
     }
+
+    //Retreiving all  fuel data from  the Database
     public async Task<List<FuelModel>> GetAllFuel()
     {
         return await _Fuelcollection.Find(new BsonDocument()).ToListAsync();
     }
 
+    //Deleteing  fuel from  the Database
     public async Task DeleteFuel(string id)
     {
         Console.WriteLine("Current services........ : ");
@@ -40,24 +41,21 @@ public class FuelServices
         return;
     }
 
+    //Updating  fuel to the Database
     public async Task UpdateFuel(string stationName, string petrol, string superPetrol, string diesel, string superDiesel)
     {
 
         FilterDefinition<FuelModel> filter = Builders<FuelModel>.Filter.Eq("stationName", stationName);
-        UpdateDefinition<FuelModel> updatepetrol = Builders<FuelModel>.Update.Set("petrol",petrol);
-         UpdateDefinition<FuelModel> updatesuperPetrol = Builders<FuelModel>.Update.Set("superPetrol",superPetrol);
-          UpdateDefinition<FuelModel> updatediesel = Builders<FuelModel>.Update.Set("diesel",diesel);
-           UpdateDefinition<FuelModel> updatesuperDiesel = Builders<FuelModel>.Update.Set("superDiesel",superDiesel);
+        UpdateDefinition<FuelModel> updatepetrol = Builders<FuelModel>.Update.Set("petrol", petrol);
+        UpdateDefinition<FuelModel> updatesuperPetrol = Builders<FuelModel>.Update.Set("superPetrol", superPetrol);
+        UpdateDefinition<FuelModel> updatediesel = Builders<FuelModel>.Update.Set("diesel", diesel);
+        UpdateDefinition<FuelModel> updatesuperDiesel = Builders<FuelModel>.Update.Set("superDiesel", superDiesel);
 
-          
-
-        await _Fuelcollection.UpdateOneAsync(filter, updatepetrol) ;
-            _Fuelcollection.UpdateOneAsync(filter, updatesuperPetrol) ;
-            _Fuelcollection.UpdateOneAsync(filter, updatediesel) ;
-            _Fuelcollection.UpdateOneAsync(filter, updatepetrol) ;
-              _Fuelcollection.UpdateOneAsync(filter, updatesuperDiesel) ;
- 
-  
+        await _Fuelcollection.UpdateOneAsync(filter, updatepetrol);
+        _Fuelcollection.UpdateOneAsync(filter, updatesuperPetrol);
+        _Fuelcollection.UpdateOneAsync(filter, updatediesel);
+        _Fuelcollection.UpdateOneAsync(filter, updatepetrol);
+        _Fuelcollection.UpdateOneAsync(filter, updatesuperDiesel);
 
         return;
     }
@@ -71,6 +69,6 @@ public class FuelServices
 
 
 
-   
+
 
 }

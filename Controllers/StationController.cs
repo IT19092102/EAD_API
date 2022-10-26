@@ -18,6 +18,7 @@ public class StationController : Controller
     }
 
 
+    //Retreiving all  station data from  the Database
     [HttpGet]
     public async Task<List<StationModel>> Get()
     {
@@ -25,18 +26,7 @@ public class StationController : Controller
         return await _stationService.getStation();
     }
 
-
-
-//   [HttpGet("{stationName}")]
-//     public async Task<List<QueueModel>> GetQueue(string stationName)
-//     {
-
-//         return await _stationService.getQueueByStationName(stationName);
-//     }
-
-
-
-
+    //Inserting  station to the Database
 
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] StationModel playlist)
@@ -45,12 +35,16 @@ public class StationController : Controller
         return CreatedAtAction(nameof(Get), new { id = playlist.Id }, playlist);
     }
 
+
+    //Updating  station to the Database
     [HttpPut("{id}")]
     public async Task<IActionResult> updateStation(string id, [FromBody] string movieId)
     {
         await _stationService.updateStation(id, movieId);
         return NoContent();
     }
+
+    //Deleteing  station from  the Database
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> deleteStation(string id)

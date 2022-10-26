@@ -20,14 +20,15 @@ public class UserController : Controller
 
 
 
-
+    //Retreiving all  users data from  the Database
     [HttpGet]
     public async Task<List<Users>> Get()
     {
-        Console.WriteLine("inside gettttttttttttttt ------------");
+
         return await _userService.GetAllUsers();
     }
 
+    //Inserting  users to the Database
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] Users playlist)
     {
@@ -37,29 +38,7 @@ public class UserController : Controller
     }
 
 
-    //     [HttpPost]
-    //     public async Task<IActionResult> Login ([FromBody] string email){
-
-    //    await _userService.DeleteUser(email);
-    //     return NoContent();
-    //     }
-
-
-
-
-
-    [HttpPost("{email}")]
-    public async Task<String> Post(string email, string password)
-    {
-
-        return await _userService.FindUser(email, password);
-
-
-        // return CreatedAtAction(nameof(Get), new{id = playlist.Id}, playlist);
-    }
-
-
-
+    //Updating  users to the Database
     [HttpPut("{id}")]
     public async Task<IActionResult> updateQueue(string id, [FromBody] Users playlistr)
     {
@@ -67,15 +46,11 @@ public class UserController : Controller
         return NoContent();
     }
 
-
-
-
-
-
+    //Deleteing  users from  the Database
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(string id)
     {
-        Console.WriteLine("inside delllllllllll ------------ :" + id);
+
         await _userService.DeleteUser(id);
         return NoContent();
     }

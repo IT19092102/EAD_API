@@ -27,18 +27,21 @@ public class QueueService
 
 
 
-    //--------------------------------------QUEUE SERVICES START-----------------------------------------------
+    //Inserting  queue to the Database
     public async Task createQueue(QueueModel queue)
     {
 
         await _queueCollection.InsertOneAsync(queue);
         return;
     }
+
+    //Retreiving all  queue data from  the Database
     public async Task<List<QueueModel>> getQueue()
     {
         return await _queueCollection.Find(new BsonDocument()).ToListAsync();
     }
 
+    //Deleteing  queue from  the Database
     public async Task deleteQueue(string id)
     {
         Console.WriteLine("Current services........ : ");
@@ -47,6 +50,7 @@ public class QueueService
         return;
     }
 
+    //Updating  queue to the Database
     public async Task updateQueue(string id, string email)
     {
         FilterDefinition<QueueModel> filter = Builders<QueueModel>.Filter.Eq("Id", id);
@@ -57,20 +61,20 @@ public class QueueService
 
 
 
-  public async Task updateQueue(string id, DateTime departureTime, string reason)
+    public async Task updateQueue(string id, DateTime departureTime, string reason)
     {
 
         FilterDefinition<QueueModel> filter = Builders<QueueModel>.Filter.Eq("Id", id);
-        UpdateDefinition<QueueModel> updatedepartureTime = Builders<QueueModel>.Update.Set("departureTime",departureTime);
-        UpdateDefinition<QueueModel> updatereason = Builders<QueueModel>.Update.Set("reason",reason);
+        UpdateDefinition<QueueModel> updatedepartureTime = Builders<QueueModel>.Update.Set("departureTime", departureTime);
+        UpdateDefinition<QueueModel> updatereason = Builders<QueueModel>.Update.Set("reason", reason);
 
-  await _queueCollection.UpdateOneAsync(filter, updatedepartureTime);
-  _queueCollection.UpdateOneAsync(filter, updatereason);
-
-          
+        await _queueCollection.UpdateOneAsync(filter, updatedepartureTime);
+        _queueCollection.UpdateOneAsync(filter, updatereason);
 
 
-  
+
+
+
 
         return;
     }

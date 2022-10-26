@@ -20,20 +20,21 @@ public class StationServices
     }
 
 
-    //--------------------------------------STATION SERVICES START-----------------------------------------------
+    //Inserting  station to the Database
     public async Task createStation(StationModel users)
     {
 
         await _stationcollection.InsertOneAsync(users);
         return;
     }
+    //Retreiving all  station data from  the Database
     public async Task<List<StationModel>> getStation()
     {
         return await _stationcollection.Find(new BsonDocument()).ToListAsync();
     }
 
-  
 
+    //Deleteing  station from  the Database
     public async Task deleteStation(string id)
     {
         Console.WriteLine("Current services........ : ");
@@ -42,21 +43,23 @@ public class StationServices
         return;
     }
 
+    //Updating  station to the Database
     public async Task updateStation(string id, string location)
-    {Console.WriteLine("inside  services location ------------ :" + location);
+    {
+        Console.WriteLine("inside  services location ------------ :" + location);
         FilterDefinition<StationModel> filter = Builders<StationModel>.Filter.Eq("Id", id);
         UpdateDefinition<StationModel> update = Builders<StationModel>.Update.SetOnInsert<string>("email", location);
         await _stationcollection.UpdateOneAsync(filter, update);
         return;
     }
 
-    //--------------------------------------STATION SERVICES END-----------------------------------------------
-
-
-
-
-
-
    
+
+
+
+
+
+
+
 
 }
