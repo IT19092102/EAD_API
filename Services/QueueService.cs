@@ -51,17 +51,17 @@ public class QueueService
     }
 
     //Updating  queue to the Database
-    public async Task updateQueue(string id, string email)
-    {
-        FilterDefinition<QueueModel> filter = Builders<QueueModel>.Filter.Eq("Id", id);
-        UpdateDefinition<QueueModel> update = Builders<QueueModel>.Update.AddToSet<string>("email", email);
-        await _queueCollection.UpdateOneAsync(filter, update);
-        return;
-    }
+    // public async Task updateQueue(string id, string email)
+    // {
+    //     FilterDefinition<QueueModel> filter = Builders<QueueModel>.Filter.Eq("Id", id);
+    //     UpdateDefinition<QueueModel> update = Builders<QueueModel>.Update.AddToSet<string>("email", email);
+    //     await _queueCollection.UpdateOneAsync(filter, update);
+    //     return;
+    // }
 
 
 
-    public async Task updateQueue(string id, DateTime departureTime, string reason)
+    public async Task updateQueue(string id, string departureTime, string reason)
     {
 
         FilterDefinition<QueueModel> filter = Builders<QueueModel>.Filter.Eq("Id", id);
@@ -80,7 +80,6 @@ public class QueueService
     }
 
 
-    //--------------------------------------QUEUE SERVICES END-----------------------------------------------
 
 
 

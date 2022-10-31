@@ -40,20 +40,48 @@ public class UserController : Controller
 
     //Updating  users to the Database
     [HttpPut("{id}")]
-    public async Task<IActionResult> updateQueue(string id, [FromBody] Users playlistr)
+    public async Task<IActionResult> updateQueue(string id, [FromBody] Users users)
     {
-        await _userService.UpdateUser(id, playlistr.email, playlistr.phoneNumber);
+        await _userService.UpdateUser(id, users.email, users.phoneNumber,users.drivingLicenceNo,users.password);
         return NoContent();
     }
+
+
+
+
+//    [HttpPost("{email}")]
+//     public async Task<String> Post (string email){
+  
+//    return await _userService.FindUser(email);
+
+   
+//     // return CreatedAtAction(nameof(Get), new{id = playlist.Id}, playlist);
+//     }
 
     //Deleteing  users from  the Database
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(string id)
     {
-
         await _userService.DeleteUser(id);
         return NoContent();
     }
+
+      [HttpPost("{email}")]
+    public async Task<String> FindUser(string email)
+    {
+       return  await _userService.FindUser(email);
+        
+    }
+
+
+       [HttpGet("{email}")]
+    public async Task<String> FindUser1(string email)
+    {
+       return  await _userService.FindUser(email);
+        
+    }
+
+
 
 
 

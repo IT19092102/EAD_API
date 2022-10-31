@@ -44,16 +44,24 @@ public class StationServices
     }
 
     //Updating  station to the Database
-    public async Task updateStation(string id, string location)
+    public async Task updateStation(string id, string stationName, string location, string brand)
     {
         Console.WriteLine("inside  services location ------------ :" + location);
         FilterDefinition<StationModel> filter = Builders<StationModel>.Filter.Eq("Id", id);
-        UpdateDefinition<StationModel> update = Builders<StationModel>.Update.SetOnInsert<string>("email", location);
-        await _stationcollection.UpdateOneAsync(filter, update);
+
+        UpdateDefinition<StationModel> stationNameUpdate = Builders<StationModel>.Update.Set("stationName", stationName);
+        UpdateDefinition<StationModel> locationUpdate = Builders<StationModel>.Update.Set("location", location);
+        UpdateDefinition<StationModel> brandUpdate = Builders<StationModel>.Update.Set("brand", brand);
+
+
+        await 
+        _stationcollection.UpdateOneAsync(filter, stationNameUpdate);
+        _stationcollection.UpdateOneAsync(filter, locationUpdate);
+        _stationcollection.UpdateOneAsync(filter, brandUpdate);
         return;
     }
 
-   
+
 
 
 

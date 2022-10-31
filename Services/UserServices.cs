@@ -31,6 +31,29 @@ public class UserServices
         return await _usercollection.Find(new BsonDocument()).ToListAsync();
     }
 
+ public async Task<String> FindUser(string email)
+    {
+        Users user = _usercollection.Find(m => m.email.Equals(email)).FirstOrDefault();
+        if (user == null)
+        {
+            Console.WriteLine("user nulll 2222222222");
+            return "user doesnt exist 22222";
+        }
+        else
+        {
+if( user.userRole=="user"){
+    return "user";
+}
+
+          
+              return "admin";
+            // return user.userRole;
+
+        }
+    }
+    
+    
+
     //Deleteing  users from  the Database
     public async Task DeleteUser(string id)
     {
@@ -40,13 +63,19 @@ public class UserServices
     }
 
     //Updating  users to the Database
-    public async Task UpdateUser(string id, string email, string phoneNumber)
+    public async Task UpdateUser(string id, string email, string phoneNumber,string drivingLicenceNo,string password)
     {
         FilterDefinition<Users> filter = Builders<Users>.Filter.Eq("Id", id);
-        UpdateDefinition<Users> update = Builders<Users>.Update.Set("email", email);
-        UpdateDefinition<Users> update1 = Builders<Users>.Update.Set("phoneNumber", phoneNumber);
+        UpdateDefinition<Users> emailupdate = Builders<Users>.Update.Set("email", email);
+        UpdateDefinition<Users> phoneNumberupdate = Builders<Users>.Update.Set("phoneNumber", phoneNumber);
+                UpdateDefinition<Users> drivingLicenceNoupdate = Builders<Users>.Update.Set("drivingLicenceNo", drivingLicenceNo);
+                  UpdateDefinition<Users> passwordupdate = Builders<Users>.Update.Set("password", password);
 
-        await _usercollection.UpdateOneAsync(filter, update); _usercollection.UpdateOneAsync(filter, update1);
+        await
+         _usercollection.UpdateOneAsync(filter, emailupdate); 
+        _usercollection.UpdateOneAsync(filter, phoneNumberupdate);
+        _usercollection.UpdateOneAsync(filter, drivingLicenceNoupdate);
+           _usercollection.UpdateOneAsync(filter, passwordupdate);
      
         return;
     }

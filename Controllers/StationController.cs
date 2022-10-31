@@ -38,9 +38,9 @@ public class StationController : Controller
 
     //Updating  station to the Database
     [HttpPut("{id}")]
-    public async Task<IActionResult> updateStation(string id, [FromBody] string movieId)
+    public async Task<IActionResult> updateStation(string id, [FromBody] StationModel station)
     {
-        await _stationService.updateStation(id, movieId);
+        await _stationService.updateStation(id, station.stationName,station.location,station.brand);
         return NoContent();
     }
 

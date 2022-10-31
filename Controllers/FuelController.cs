@@ -38,7 +38,7 @@ public class FuelController : Controller
     [HttpPut("{stationName}")]
     public async Task<IActionResult> updatefuel(string stationName, [FromBody] FuelModel fuel)
     {
-        await _fuelService.UpdateFuel(stationName, fuel.petrol,fuel.superPetrol,fuel.diesel,fuel.superDiesel);
+        await _fuelService.UpdateFuel(stationName, fuel);
         return NoContent();
     }
 
