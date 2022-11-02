@@ -40,7 +40,7 @@ public class UserController : Controller
 
     //Updating  users to the Database
     [HttpPut("{id}")]
-    public async Task<IActionResult> updateQueue(string id, [FromBody] Users users)
+    public async Task<IActionResult> updateUser(string id, [FromBody] Users users)
     {
         await _userService.UpdateUser(id, users.email, users.phoneNumber,users.drivingLicenceNo,users.password);
         return NoContent();

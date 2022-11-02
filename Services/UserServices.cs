@@ -68,14 +68,14 @@ if( user.userRole=="user"){
         FilterDefinition<Users> filter = Builders<Users>.Filter.Eq("Id", id);
         UpdateDefinition<Users> emailupdate = Builders<Users>.Update.Set("email", email);
         UpdateDefinition<Users> phoneNumberupdate = Builders<Users>.Update.Set("phoneNumber", phoneNumber);
-                UpdateDefinition<Users> drivingLicenceNoupdate = Builders<Users>.Update.Set("drivingLicenceNo", drivingLicenceNo);
-                  UpdateDefinition<Users> passwordupdate = Builders<Users>.Update.Set("password", password);
+        UpdateDefinition<Users> drivingLicenceNoupdate = Builders<Users>.Update.Set("drivingLicenceNo", drivingLicenceNo);
+        UpdateDefinition<Users> passwordupdate = Builders<Users>.Update.Set("password", password);
 
         await
          _usercollection.UpdateOneAsync(filter, emailupdate); 
         _usercollection.UpdateOneAsync(filter, phoneNumberupdate);
         _usercollection.UpdateOneAsync(filter, drivingLicenceNoupdate);
-           _usercollection.UpdateOneAsync(filter, passwordupdate);
+        _usercollection.UpdateOneAsync(filter, passwordupdate);
      
         return;
     }

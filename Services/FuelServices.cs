@@ -15,7 +15,7 @@ public class FuelServices
 
         MongoClient client = new MongoClient(FuelAPISettings.Value.ConnectionURI);
         IMongoDatabase database = client.GetDatabase(FuelAPISettings.Value.DatabaseName);
-        _Fuelcollection = database.GetCollection<FuelModel>("Fuel_test");
+        _Fuelcollection = database.GetCollection<FuelModel>("Fuel");
 
     }
 
@@ -46,11 +46,10 @@ public class FuelServices
     {
         FilterDefinition<FuelModel> filter = Builders<FuelModel>.Filter.Eq("stationName", fuelModel.stationName);
 
+
         if (fuelModel.petrol == "No" || fuelModel.petrol == "Yes")
         {
-            Console.WriteLine("petrol..................................... : "+fuelModel.petrol);
-              Console.WriteLine("petrolTime..................................... : "+fuelModel.petrolTime);
-                Console.WriteLine("stationName..................................... : "+fuelModel.stationName);
+           
             UpdateDefinition<FuelModel> updatepetrol = Builders<FuelModel>.Update.Set("petrol", fuelModel.petrol);
             UpdateDefinition<FuelModel> updatePetrolTime = Builders<FuelModel>.Update.Set("petrolTime", fuelModel.petrolTime);
             await _Fuelcollection.UpdateOneAsync(filter, updatepetrol);
